@@ -1,0 +1,39 @@
+<div class="list row">
+  <div class="col-md-12">
+    <div class="input-group mb-3">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by Name"
+        [(ngModel)]="name"
+      />
+      <div class="input-group-append">
+        <button
+          class="btn btn-outline-secondary"
+          type="button"
+          (click)="searchTitle()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="col-md-12">
+    <h4>Recipes List</h4>
+    <ul class="list-group">
+      <li
+        class="list-group-item"
+        *ngFor="let pub of pubs; let i = index"
+        [class.active]="i == currentIndex"
+        (click)="setActivePubs(pub, pub.id)"
+        [routerLink]="['/pubs', pub.id]"
+      >
+        {{ pub.name }}
+      </li>
+    </ul>
+
+  </div>
+
+</div>

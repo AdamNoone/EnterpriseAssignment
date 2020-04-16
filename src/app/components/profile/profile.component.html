@@ -1,0 +1,92 @@
+<div *ngIf="currentRecipe" class="edit-form">
+  <h4>Recipe</h4>
+  <form>
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        [(ngModel)]="currentRecipe.title"
+        name="title"
+      />
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input
+        type="text"
+        class="form-control"
+        id="description"
+        [(ngModel)]="currentRecipe.description"
+        name="description"
+      />
+    </div>
+
+    <div class="form-group">
+      <label><strong>Status:</strong></label>
+      {{ currentRecipe.published ? "Published" : "Pending" }}
+    </div>
+  </form>
+
+  <button
+    class="badge badge-primary mr-2"
+    *ngIf="currentRecipe.published"
+    (click)="updatePublished(false)"
+  >
+    UnPublish
+  </button>
+  <button
+    *ngIf="!currentRecipe.published"
+    class="badge badge-primary mr-2"
+    (click)="updatePublished(true)"
+  >
+    Publish
+  </button>
+
+  <button class="badge badge-danger mr-2" (click)="deleteRecipe()">
+    Delete
+  </button>
+
+  <button type="submit" class="badge badge-success" (click)="updateRecipe()">
+    Update
+  </button>
+  <p>{{ message }}</p>
+</div>
+
+<div *ngIf="!currentRecipe">
+  <br />
+  <p>Cannot access this Recipe...</p>
+</div>
+
+<div class="list row">
+  <div class="col-md-6">
+    <div *ngIf="currentRecipe">
+      <h4>Recipe</h4>
+      <div>
+        <label><strong>Title:</strong></label> {{ currentRecipe.title }}
+      </div>
+      <div>
+        <label><strong>Description:</strong></label>
+        {{ currentRecipe.description }}
+      </div>
+      <div>
+        <label><strong>Status:</strong></label>
+        {{ currentRecipe.published ? "Published" : "Pending" }}
+      </div>
+
+      <a class="badge badge-warning" href="/recipes/{{ currentRecipe.id }}">
+        Edit
+      </a>
+
+      <a class="badge badge-warning" href="/recipes/{{ currentRecipe.id }}">
+        Edit
+      </a>
+    </div>
+
+    <div *ngIf="!currentRecipe">
+      <br />
+      <p>Please click on a Recipe...</p>
+    </div>
+  </div>
+</div>
+
