@@ -21,8 +21,8 @@ db.sequelize = sequelize;
 
 db.pubs = require("./pub.model.js")(sequelize, Sequelize);
 db.reviews = require("./review.model.js")(sequelize, Sequelize);
-db.user = require("./models/user.model.js")(sequelize, Sequelize);
-db.role = require("./models/role.model.js")(sequelize, Sequelize);
+db.user = require("./user.model.js")(sequelize, Sequelize);
+db.role = require("./role.model.js")(sequelize, Sequelize);
 
 
 db.role.belongsToMany(db.user, {
@@ -39,13 +39,3 @@ db.user.belongsToMany(db.role, {
 db.ROLES = ["user", "admin", "moderator"];
 
 module.exports = db;
-
-
-//signup stuff
-const authJwt = require("./authJwt");
-const verifySignUp = require("./verifySignUp");
-
-module.exports = {
-  authJwt,
-  verifySignUp
-};
