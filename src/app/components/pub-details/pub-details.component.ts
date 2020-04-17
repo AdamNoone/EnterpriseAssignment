@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ReviewService} from '../../services/review.service';
+import {TokenStorageService} from '../../services/token-storage.service';
+
 
 @Component({
   selector: 'app-pub-details',
@@ -22,16 +24,27 @@ export class PubDetailsComponent implements OnInit {
 
   };
   submitted = false;
+  isLoggedIn = false;
+  username: string;
 
   constructor(
     private pubService: PubService,
     private reviewService: ReviewService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.message = '';
     this.getPub(this.route.snapshot.paramMap.get('id'));
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+
+      this.username = user.username;
+    }
   }
 
   getPub(id) {
@@ -53,7 +66,7 @@ export class PubDetailsComponent implements OnInit {
       review_title: this.review.review_title,
       review_text: this.review.review_text,
       rating: this.review.rating,
-      user: 'tom',
+      user: this.username,
     };
     console.log('this is the pub id before review ' + data.pub_id);
     this.reviewService.create(data)

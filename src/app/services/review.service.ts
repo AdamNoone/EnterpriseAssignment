@@ -41,4 +41,8 @@ export class ReviewService {
   findByID(pubid) {
     return this.http.get(`${baseUrl}?pub_id=${pubid}`);
   }
+
+  findByName(username) {
+    return this.http.get(`${baseUrl}/user?user=${username}`);
+  }
 }

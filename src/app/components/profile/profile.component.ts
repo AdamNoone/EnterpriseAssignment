@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import {ReviewService} from '../../services/review.service';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-profile',
@@ -9,24 +11,47 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 
 export class ProfileComponent implements OnInit {
-  currentRecipe = null;
+  currentPub = null;
   message = '';
+  reviews: any;
+  review = {
+    id : 0,
+    pub_id: 0,
+    review_title: '',
+    review_text: '',
+    rating: 0,
+    user: '',
+  };
+
+
+  isLoggedIn = false;
+  username: string;
+
 
   constructor(
-    private recipeService: PubService,
+    private pubService: PubService,
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    private reviewService: ReviewService,
+    private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
     this.message = '';
-    this.getRecipe(this.route.snapshot.paramMap.get('id'));
-  }
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
 
-  getRecipe(id) {
-    this.recipeService.get(id)
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+
+      this.username = user.username;
+    }
+    this.GetReviews(this.username);
+    }
+
+  getPub(id) {
+    this.pubService.get(id)
       .subscribe(
         data => {
-          this.currentRecipe = data;
+          this.currentPub = data;
           console.log(data);
         },
         error => {
@@ -36,15 +61,15 @@ export class ProfileComponent implements OnInit {
 
   updatePublished(status) {
     const data = {
-      title: this.currentRecipe.title,
-      description: this.currentRecipe.description,
+      title: this.currentPub.title,
+      description: this.currentPub.description,
       published: status
     };
 
-    this.recipeService.update(this.currentRecipe.id, data)
+    this.pubService.update(this.currentPub.id, data)
       .subscribe(
         response => {
-          this.currentRecipe.published = status;
+          this.currentPub.published = status;
           console.log(response);
         },
         error => {
@@ -52,24 +77,37 @@ export class ProfileComponent implements OnInit {
         });
   }
 
-  updateRecipe() {
-    this.recipeService.update(this.currentRecipe.id, this.currentRecipe)
+  updateReview(id: any, review: any) {
+    this.reviewService.update(id, review)
       .subscribe(
         response => {
           console.log(response);
-          this.message = 'The Recipe was updated successfully!';
+          this.message = 'The Pub was updated successfully!';
         },
         error => {
           console.log(error);
         });
   }
 
-  deleteRecipe() {
-    this.recipeService.delete(this.currentRecipe.id)
+  deleteReview(id: any) {
+    this.reviewService.delete(id)
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/recipes']);
+          this.router.navigate(['/pubs']);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  GetReviews(username: any) {
+    console.log('This is username in function ' + username);
+    this.reviewService.findByName(username)
+      .subscribe(
+        reviewdata => {
+          this.reviews = reviewdata;
+          console.log(reviewdata);
         },
         error => {
           console.log(error);

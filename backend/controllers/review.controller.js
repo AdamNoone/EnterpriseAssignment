@@ -36,8 +36,26 @@ exports.create = (req, res) => {
 
 // Retrieve all Reviews from the database.
 exports.findAll = (req, res) => {
-  const pubid = req.query.pub_id;
+  const pubid = req.query.user;
   var condition = pubid ? { pub_id: { [Op.like]: `%${pubid}%` } } : null;
+
+  Review.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Reviews."
+      });
+    });
+};
+
+// Retrieve all Reviews from the database.
+exports.findByName = (req, res) => {
+  const username = req.query.user;
+  console.log("backend says " + username);
+  var condition = username ? { user: { [Op.like]: `%${username}%` } } : null;
 
   Review.findAll({ where: condition })
     .then(data => {

@@ -17,8 +17,10 @@ import { RegisterComponent } from './components/register/register.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
+import { MapComponent } from './components/map/map.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     BoardAdminComponent,
     BoardModeratorComponent,
     BoardUserComponent,
+    MapComponent,
   ],
   imports: [
     BrowserModule,

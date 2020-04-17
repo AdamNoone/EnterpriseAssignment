@@ -1,5 +1,5 @@
-<div *ngIf="currentRecipe" class="edit-form">
-  <h4>Recipe</h4>
+<div *ngIf="currentPub" class="edit-form">
+  <h4>Pub</h4>
   <form>
     <div class="form-group">
       <label for="title">Title</label>
@@ -7,86 +7,113 @@
         type="text"
         class="form-control"
         id="title"
-        [(ngModel)]="currentRecipe.title"
+        [(ngModel)]="currentPub.title"
         name="title"
       />
     </div>
     <div class="form-group">
-      <label for="description">Description</label>
+      <label for="review_text">review_text</label>
       <input
         type="text"
         class="form-control"
-        id="description"
-        [(ngModel)]="currentRecipe.description"
-        name="description"
+        id="review_text"
+        [(ngModel)]="currentPub.review_text"
+        name="review_text"
       />
     </div>
-
     <div class="form-group">
-      <label><strong>Status:</strong></label>
-      {{ currentRecipe.published ? "Published" : "Pending" }}
+      <label for="rating">Rating</label>
+      <input
+        type="text"
+        class="form-control"
+        id="rating"
+        [(ngModel)]="currentPub.review_text"
+        name="rating"
+      />
     </div>
   </form>
 
-  <button
-    class="badge badge-primary mr-2"
-    *ngIf="currentRecipe.published"
-    (click)="updatePublished(false)"
-  >
-    UnPublish
-  </button>
-  <button
-    *ngIf="!currentRecipe.published"
-    class="badge badge-primary mr-2"
-    (click)="updatePublished(true)"
-  >
-    Publish
-  </button>
 
-  <button class="badge badge-danger mr-2" (click)="deleteRecipe()">
+  <button class="badge badge-danger mr-2" (click)="deletePub(review.id)">
     Delete
   </button>
 
-  <button type="submit" class="badge badge-success" (click)="updateRecipe()">
+  <button type="submit" class="badge badge-success" (click)="updatePub(review.id)">
     Update
   </button>
   <p>{{ message }}</p>
 </div>
 
-<div *ngIf="!currentRecipe">
+<div *ngIf="!currentPub">
   <br />
-  <p>Cannot access this Recipe...</p>
+  <p>Cannot access Pubs...</p>
 </div>
 
 <div class="list row">
   <div class="col-md-6">
-    <div *ngIf="currentRecipe">
+    <div *ngIf="currentPub">
       <h4>Recipe</h4>
       <div>
-        <label><strong>Title:</strong></label> {{ currentRecipe.title }}
+        <label><strong>Title:</strong></label> {{ currentPub.title }}
       </div>
       <div>
         <label><strong>Description:</strong></label>
-        {{ currentRecipe.description }}
+        {{ currentPub.description }}
       </div>
-      <div>
-        <label><strong>Status:</strong></label>
-        {{ currentRecipe.published ? "Published" : "Pending" }}
-      </div>
-
-      <a class="badge badge-warning" href="/recipes/{{ currentRecipe.id }}">
+      <a class="badge badge-warning" href="/recipes/{{ currentPub.id }}">
         Edit
       </a>
 
-      <a class="badge badge-warning" href="/recipes/{{ currentRecipe.id }}">
+      <a class="badge badge-warning" href="/recipes/{{ currentPub.id }}">
         Edit
       </a>
     </div>
 
-    <div *ngIf="!currentRecipe">
+    <div *ngIf="!currentPub">
       <br />
       <p>Please click on a Recipe...</p>
     </div>
   </div>
 </div>
 
+
+
+<div class="col-md-12">
+  <h4>Your Reviews</h4>
+  <ul class="list-group">
+    <li
+      class="list-group-item"
+      *ngFor="let review of reviews"
+    >
+      <div>
+        <label><strong>Review Title:</strong></label>
+        {{ review.review_title}}
+      </div>
+      <div>
+        <label><strong>Review:</strong></label>
+        {{ review.review_text}}
+      </div>
+
+      <div>
+        <label><strong>Rating:</strong></label>
+        {{ review.rating}}
+      </div>
+
+      <div>
+        <label><strong>Posted By:</strong></label>
+        {{ review.user }}
+      </div>
+      <button class="badge badge-danger mr-2" (click)="deleteReview(review.id)">
+        Delete
+      </button>
+
+      <button type="submit" class="badge badge-success" (click)="updateReview(review.id,review)">
+        Update
+      </button>
+
+      <a class="badge badge-warning" href="/pubs/{{ review.pub_id }}">
+        Edit
+      </a>
+    </li>
+  </ul>
+</div>

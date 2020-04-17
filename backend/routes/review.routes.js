@@ -9,6 +9,12 @@ module.exports = app => {
   // Retrieve all Recipes
   router.get("/", reviews.findAll);
 
+// Retrieve all Recipes
+  router.get("/", reviews.findAll);
+
+// Retrieve all Recipes
+  router.get("/user", reviews.findByName);
+
   // Retrieve a single Recipe with id
   router.get("/:id", reviews.findOne);
 
