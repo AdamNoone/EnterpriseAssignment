@@ -4,6 +4,11 @@ import { PubDetailsComponent } from './components/pub-details/pub-details.compon
 import { PubFeedComponent } from './components/pub-feed/pub-feed.component';
 import { HomeComponent } from './components/home/home.component';
 import {ProfileComponent} from './components/profile/profile.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { BoardUserComponent } from './components/board-user/board-user.component';
+import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 
 const routes: Routes = [
   { path: '',
@@ -18,6 +23,21 @@ const routes: Routes = [
   },
   { path: 'profile',
     component: ProfileComponent
+  },
+  { path: 'login',
+    component: LoginComponent
+  },
+  { path: 'register',
+    component: RegisterComponent
+  },
+  { path: 'user',
+    component: BoardUserComponent
+  },
+  { path: 'mod',
+    component: BoardModeratorComponent
+  },
+  { path: 'admin',
+    component: BoardAdminComponent
   }
 ];
 

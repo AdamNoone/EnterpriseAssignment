@@ -12,6 +12,13 @@ import {PubService} from './services/pub.service';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from './components/home/home.component';
 import { ProfileComponent } from './components/profile/profile.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
+import { BoardAdminComponent } from './components/board-admin/board-admin.component';
+import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
+import { BoardUserComponent } from './components/board-user/board-user.component';
+
+import { authInterceptorProviders } from './helpers/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -20,7 +27,12 @@ import { ProfileComponent } from './components/profile/profile.component';
     PubFeedComponent,
     NavBarComponent,
     HomeComponent,
-    ProfileComponent
+    ProfileComponent,
+    LoginComponent,
+    RegisterComponent,
+    BoardAdminComponent,
+    BoardModeratorComponent,
+    BoardUserComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,7 +41,7 @@ import { ProfileComponent } from './components/profile/profile.component';
     RouterModule,
     AppRoutingModule
   ],
-  providers: [PubService],
+  providers: [PubService, authInterceptorProviders],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
