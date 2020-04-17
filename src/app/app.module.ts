@@ -20,6 +20,7 @@ import { BoardUserComponent } from './components/board-user/board-user.component
 import { MapComponent } from './components/map/map.component';
 
 import { authInterceptorProviders } from './helpers/auth.interceptor';
+import { UpdateReviewComponent } from './components/update-review/update-review.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { authInterceptorProviders } from './helpers/auth.interceptor';
     BoardModeratorComponent,
     BoardUserComponent,
     MapComponent,
+    UpdateReviewComponent,
   ],
   imports: [
     BrowserModule,
