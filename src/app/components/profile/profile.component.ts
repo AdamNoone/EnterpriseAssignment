@@ -11,7 +11,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 })
 
 export class ProfileComponent implements OnInit {
-  currentPub = null;
+  currentReview = null;
   message = '';
   reviews: any;
   review = {
@@ -51,7 +51,7 @@ export class ProfileComponent implements OnInit {
     this.pubService.get(id)
       .subscribe(
         data => {
-          this.currentPub = data;
+          this.currentReview = data;
           console.log(data);
         },
         error => {
@@ -61,15 +61,15 @@ export class ProfileComponent implements OnInit {
 
   updatePublished(status) {
     const data = {
-      title: this.currentPub.title,
-      description: this.currentPub.description,
-      published: status
+      title: this.currentReview.title,
+      description: this.currentReview.description,
+      rating: this.currentReview.rating
     };
 
-    this.pubService.update(this.currentPub.id, data)
+    this.pubService.update(this.currentReview.id, data)
       .subscribe(
         response => {
-          this.currentPub.published = status;
+          this.currentReview.published = status;
           console.log(response);
         },
         error => {

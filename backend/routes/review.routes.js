@@ -15,6 +15,9 @@ module.exports = app => {
 // Retrieve all Recipes
   router.get("/user", reviews.findByName);
 
+  // Retrieve all Recipes
+  router.get("/pub_id", reviews.findByID);
+
   // Retrieve a single Recipe with id
   router.get("/:id", reviews.findOne);
 

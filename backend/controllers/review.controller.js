@@ -51,6 +51,22 @@ exports.findAll = (req, res) => {
     });
 };
 
+exports.findByID = (req, res) => {
+  const pubid = req.query.pub_id;
+  var condition = pubid ? { pub_id: { [Op.like]: `%${pubid}%` } } : null;
+
+  Review.findAll({ where: condition })
+    .then(data => {
+      res.send(data);
+    })
+    .catch(err => {
+      res.status(500).send({
+        message:
+          err.message || "Some error occurred while retrieving Reviews."
+      });
+    });
+};
+
 // Retrieve all Reviews from the database.
 exports.findByName = (req, res) => {
   const username = req.query.user;
@@ -106,7 +122,7 @@ exports.update = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: "Error updating Tutorial with id=" + id
+        message: "Error updating Review with id=" + id
       });
     });
 };

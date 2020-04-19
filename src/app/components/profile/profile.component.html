@@ -1,83 +1,4 @@
-<div *ngIf="currentPub" class="edit-form">
-  <h4>Pub</h4>
-  <form>
-    <div class="form-group">
-      <label for="title">Title</label>
-      <input
-        type="text"
-        class="form-control"
-        id="title"
-        [(ngModel)]="currentPub.title"
-        name="title"
-      />
-    </div>
-    <div class="form-group">
-      <label for="review_text">review_text</label>
-      <input
-        type="text"
-        class="form-control"
-        id="review_text"
-        [(ngModel)]="currentPub.review_text"
-        name="review_text"
-      />
-    </div>
-    <div class="form-group">
-      <label for="rating">Rating</label>
-      <input
-        type="text"
-        class="form-control"
-        id="rating"
-        [(ngModel)]="currentPub.review_text"
-        name="rating"
-      />
-    </div>
-  </form>
-
-
-  <button class="badge badge-danger mr-2" (click)="deletePub(review.id)">
-    Delete
-  </button>
-
-  <button type="submit" class="badge badge-success" (click)="updatePub(review.id)">
-    Update
-  </button>
-  <p>{{ message }}</p>
-</div>
-
-<div *ngIf="!currentPub">
-  <br />
-  <p>Cannot access Pubs...</p>
-</div>
-
 <div class="list row">
-  <div class="col-md-6">
-    <div *ngIf="currentPub">
-      <h4>Recipe</h4>
-      <div>
-        <label><strong>Title:</strong></label> {{ currentPub.title }}
-      </div>
-      <div>
-        <label><strong>Description:</strong></label>
-        {{ currentPub.description }}
-      </div>
-      <a class="badge badge-warning" href="/recipes/{{ currentPub.id }}">
-        Edit
-      </a>
-
-      <a class="badge badge-warning" href="/recipes/{{ currentPub.id }}">
-        Edit
-      </a>
-    </div>
-
-    <div *ngIf="!currentPub">
-      <br />
-      <p>Please click on a Recipe...</p>
-    </div>
-  </div>
-</div>
-
-
-
 <div class="col-md-12">
   <h4>Your Reviews</h4>
   <ul class="list-group">
@@ -107,13 +28,10 @@
         Delete
       </button>
 
-      <button type="submit" class="badge badge-success" (click)="updateReview(review.id,review)">
-        Update
-      </button>
-
-      <a class="badge badge-warning" href="/pubs/{{ review.pub_id }}">
+      <a class="badge badge-warning" href="/update/{{ review.id }}">
         Edit
       </a>
     </li>
   </ul>
+</div>
 </div>
