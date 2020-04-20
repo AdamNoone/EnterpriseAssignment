@@ -48,13 +48,24 @@ export class MapComponent implements OnInit {
   }
 
   MakePubMarkers() {
-    const newmap = this.map
-    const iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
+    const newmap = this.map;
+    const iconBase = 'src/app/assets/';
+
+    const pint = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: 0.15,
+      strokeColor: 'black',
+      strokeWeight: 2
+    };
+
+
     // tslint:disable-next-line:only-arrow-functions
     this.pubs.forEach(function(pub) {
        const marker = new google.maps.Marker({
         position: new google.maps.LatLng(pub.lat, pub.lon),
-         icon: iconBase + 'parking_lot_maps.png',
+         icon: pint,
         map: newmap
       });
 
