@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import {Router} from '@angular/router';
+import {TokenStorageService} from '../../services/token-storage.service';
 
 @Component({
   selector: 'app-pub-feed',
@@ -12,10 +13,24 @@ export class PubFeedComponent implements OnInit {
   currentPub = null;
   currentIndex = -1;
   name = '';
+  showAdminBoard = false;
+  private roles: string[];
+  isLoggedIn = false;
 
-  constructor(private pubService: PubService, public router: Router) { }
+  constructor(private pubService: PubService, public router: Router, private tokenStorageService: TokenStorageService) { }
 
   ngOnInit() {
+
+    this.isLoggedIn = !!this.tokenStorageService.getToken();
+
+    if (this.isLoggedIn) {
+      const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
+
+    }
+
     this.retrievePubs();
   }
 
@@ -61,6 +76,18 @@ export class PubFeedComponent implements OnInit {
         data => {
           this.pubs = data;
           console.log(data);
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  deletePub(pubid) {
+    this.pubService.delete(pubid)
+      .subscribe(
+        response => {
+          console.log(response);
+          this.router.navigate(['/pubs']);
         },
         error => {
           console.log(error);

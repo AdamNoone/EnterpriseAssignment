@@ -1,0 +1,12 @@
+#map {
+  height: 55vh;
+  width: 100%;
+}
+
+#lat{
+  display: none;
+}
+
+#lon{
+  display: none;
+}

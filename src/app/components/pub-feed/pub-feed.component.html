@@ -21,7 +21,7 @@
 
 
   <div class="col-md-12">
-    <h4>Pub in Dublin</h4>
+    <h4>Pubs in Dublin</h4>
     <ul class="list-group">
       <li
         class="list-group-item"
@@ -31,6 +31,12 @@
         [routerLink]="['/pubs', pub.id]"
       >
         {{ pub.name }}
+
+
+        <button  *ngIf="showAdminBoard" class="badge badge-danger float-right" (click)="deletePub(pub.id)">
+          Delete
+        </button>
+
       </li>
     </ul>
 

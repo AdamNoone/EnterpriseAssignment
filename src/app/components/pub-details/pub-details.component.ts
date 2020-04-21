@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ReviewService} from '../../services/review.service';
@@ -12,6 +12,9 @@ import {TokenStorageService} from '../../services/token-storage.service';
 })
 
 export class PubDetailsComponent implements OnInit {
+  @ViewChild('mapContainer', {static: false}) gmap: ElementRef;
+  map: google.maps.Map;
+
   currentPub = null;
   reviews: any;
   message = '';
@@ -26,13 +29,17 @@ export class PubDetailsComponent implements OnInit {
   submitted = false;
   isLoggedIn = false;
   username: string;
+  showAdminBoard = false;
+  private roles: string[];
+
 
   constructor(
     private pubService: PubService,
     private reviewService: ReviewService,
     private route: ActivatedRoute,
     private router: Router,
-    private tokenStorageService: TokenStorageService) { }
+    private tokenStorageService: TokenStorageService) {
+  }
 
   ngOnInit() {
     this.message = '';
@@ -42,9 +49,18 @@ export class PubDetailsComponent implements OnInit {
 
     if (this.isLoggedIn) {
       const user = this.tokenStorageService.getUser();
+      this.roles = user.roles;
+
+      this.showAdminBoard = this.roles.includes('ROLE_ADMIN');
 
       this.username = user.username;
     }
+  }
+
+  // tslint:disable-next-line:use-lifecycle-interface
+  ngAfterViewInit() {
+    this.mapInitializer();
+    this.MakePubMarker();
   }
 
   getPub(id) {
@@ -81,9 +97,7 @@ export class PubDetailsComponent implements OnInit {
   }
 
   updatePublished(status) {
-    const data = {
-
-    };
+    const data = {};
 
     this.pubService.update(this.currentPub.id, data)
       .subscribe(
@@ -133,4 +147,57 @@ export class PubDetailsComponent implements OnInit {
         });
   }
 
+  deleteReview(id: any) {
+    this.reviewService.delete(id)
+      .subscribe(
+        response => {
+          console.log(response);
+          window.location.reload();
+        },
+        error => {
+          console.log(error);
+        });
+  }
+
+  Reload() {
+    window.location.reload();
+  }
+
+  mapInitializer() {
+
+    const lat = 53.3473;
+    const lng = -6.2591;
+    const coordinates = new google.maps.LatLng(lat, lng);
+
+    const mapOptions: google.maps.MapOptions = {
+      center: coordinates,
+      zoom: 12,
+    };
+
+    this.map = new google.maps.Map(this.gmap.nativeElement,
+      mapOptions);
+  }
+
+
+  MakePubMarker() {
+    const newmap = this.map;
+    console.log('PLACING MARKER');
+
+    const pint = {
+      path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
+      fillColor: 'yellow',
+      fillOpacity: 0.8,
+      scale: 0.15,
+      strokeColor: 'black',
+      strokeWeight: 2
+    };
+
+
+    const marker = new google.maps.Marker({
+      position: new google.maps.LatLng(this.currentPub.lat, this.currentPub.lon),
+      icon: pint,
+      map: newmap
+    });
+
+  }
 }

@@ -94,7 +94,7 @@ export class ProfileComponent implements OnInit {
       .subscribe(
         response => {
           console.log(response);
-          this.router.navigate(['/pubs']);
+          window.location.reload();
         },
         error => {
           console.log(error);
