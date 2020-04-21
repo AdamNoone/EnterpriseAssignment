@@ -51,6 +51,8 @@ export class MapComponent implements OnInit {
     const newmap = this.map;
     const iconBase = 'src/app/assets/';
 
+
+    //const x = '../../../assets/guinness.jpg'
     const pint = {
       path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
       fillColor: 'yellow',
