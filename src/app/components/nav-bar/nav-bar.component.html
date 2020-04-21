@@ -1,8 +1,8 @@
-<nav class="navbar navbar-expand-lg " style="background-color: #0094FF;">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" style="background-color: #0094FF;">
   <a href="#" class="navbar-brand">GuinnessGrader</a>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
+    <span class="navbar-toggler-icon " style="color: black"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarNav">
@@ -22,7 +22,7 @@
 
   <ul class="navbar-nav ml-auto" *ngIf="!isLoggedIn">
     <li class="nav-item">
-      <a href="/register" class="nav-link" routerLink="register">Sign Up</a>
+      <a href="/register" class="nav-link" routerLink="register">Register</a>
     </li>
     <li class="nav-item">
       <a href="/login" class="nav-link" routerLink="login">Login</a>
