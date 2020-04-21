@@ -18,12 +18,18 @@ export class BoardAdminComponent implements OnInit {
 
   pub = {
     name: '',
+    address: '',
     lat: 0.0,
     lon: 0.0,
   };
 
   submitted = false;
+  AddPubFailed = false;
+  errorMessage = '';
+  isSuccessful = false;
   private content: any;
+
+  form: any = {};
 
   constructor(private pubService: PubService, private userService: UserService) { }
 
@@ -56,12 +62,20 @@ export class BoardAdminComponent implements OnInit {
         response => {
           console.log(response);
           this.submitted = true;
+          this.isSuccessful = true;
+          this.AddPubFailed = false;
+          document.getElementById('map').style.display = 'none';
         },
         error => {
           console.log(error);
+          this.errorMessage = error.error.message;
+          this.AddPubFailed = true;
+          document.getElementById('map').style.display = 'block';
         });
-    document.getElementById('map').style.display = 'none';
   }
+
+
+
 
   newPub() {
     window.location.reload();

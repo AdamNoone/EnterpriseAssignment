@@ -93,4 +93,13 @@ export class PubFeedComponent implements OnInit {
           console.log(error);
         });
   }
+
+  resetList() {
+    // tslint:disable-next-line:triple-equals
+    if (this.name == '') {
+      console.log('reset');
+      this.retrievePubs();
+    }
+  }
+
 }

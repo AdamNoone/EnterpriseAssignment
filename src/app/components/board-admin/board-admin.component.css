@@ -10,3 +10,39 @@
 #lon{
   display: none;
 }
+
+
+#header{
+  padding: 3vh;
+  background-color: black;
+
+}
+
+#header h2{
+  font-family: Georgia, serif;
+  font-size: 3vh;
+  letter-spacing: 1.4px;
+  word-spacing: -0.4px;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+
+#map{
+  margin-top: 3vh;
+  border: 2px solid black;
+}
+
+
+button{
+  margin-top: 2vh;
+}
+
+label{
+  margin-top: 2vh;
+}
+
