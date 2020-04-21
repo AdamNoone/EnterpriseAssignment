@@ -60,7 +60,10 @@ export class PubDetailsComponent implements OnInit {
   // tslint:disable-next-line:use-lifecycle-interface
   ngAfterViewInit() {
     this.mapInitializer();
-    this.MakePubMarker();
+    setTimeout(() => {
+        this.MakePubMarker();
+      },
+      1000);
   }
 
   getPub(id) {
