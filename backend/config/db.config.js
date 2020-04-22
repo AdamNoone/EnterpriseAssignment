@@ -1,3 +1,4 @@
+// criteria needed to connect to the database
 module.exports = {
   HOST: "localhost",
   USER: "root",

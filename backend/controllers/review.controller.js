@@ -1,3 +1,7 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/node-js-express-sequelize-mysql/
+
 const db = require("../models");
 const Review = db.reviews;
 const Op = db.Sequelize.Op;
@@ -28,28 +32,12 @@ exports.create = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while creating the Review."
+        message: err.message || "An error occurred while creating the Review."
       });
     });
 };
 
-// Retrieve all Reviews from the database.
-exports.findAll = (req, res) => {
-  const pubid = req.query.user;
-  var condition = pubid ? { pub_id: { [Op.like]: `%${pubid}%` } } : null;
 
-  Review.findAll({ where: condition })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Reviews."
-      });
-    });
-};
 
 exports.findByID = (req, res) => {
   const pubid = req.query.pub_id;
@@ -61,8 +49,7 @@ exports.findByID = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Reviews."
+        message: err.message || "An error occurred while retrieving Reviews."
       });
     });
 };
@@ -79,8 +66,7 @@ exports.findByName = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving Reviews."
+        message: err.message || "An error occurred while retrieving Reviews."
       });
     });
 };
@@ -114,10 +100,6 @@ exports.update = (req, res) => {
         res.send({
           message: "Review was updated successfully."
         });
-      } else {
-        res.send({
-          message: `Cannot update Review with id=${id}. Maybe Review was not found or req.body is empty!`
-        });
       }
     })
     .catch(err => {
@@ -137,48 +119,15 @@ exports.delete = (req, res) => {
     .then(num => {
       if (num === 1) {
         res.send({
-          message: "Tutorial was deleted successfully!"
-        });
-      } else {
-        res.send({
-          message: `Cannot delete Tutorial with id=${id}. Maybe Tutorial was not found!`
+          message: "Review was deleted successfully!"
         });
       }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Tutorial with id=" + id
+        message: "Could not delete Review with id=" + id
       });
     });
 };
 
-// Delete all Reviews from the database.
-exports.deleteAll = (req, res) => {
-  Review.destroy({
-    where: {},
-    truncate: false
-  })
-    .then(nums => {
-      res.send({ message: `${nums} Tutorials were deleted successfully!` });
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while removing all tutorials."
-      });
-    });
-};
 
-// Find all published Review
-exports.findAllPublished = (req, res) => {
-  Review.findAll({ where: { published: true } })
-    .then(data => {
-      res.send(data);
-    })
-    .catch(err => {
-      res.status(500).send({
-        message:
-          err.message || "Some error occurred while retrieving tutorials."
-      });
-    });
-};

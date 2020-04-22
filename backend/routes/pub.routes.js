@@ -1,25 +1,24 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/node-js-express-sequelize-mysql/
+
 module.exports = app => {
   const pubs = require("../controllers/pub.controller.js");
 
   var router = require("express").Router();
 
-  // Create a new Recipe
+  // Create a new Pub
   router.post("/", pubs.create);
 
-  // Retrieve all Recipes
+  // Retrieve all Pub
   router.get("/", pubs.findAll);
 
-  // Retrieve a single Recipe with id
+  // Retrieve a single Pub by id
   router.get("/:id", pubs.findOne);
-
-  // Update a Recipe with id
-  router.put("/:id", pubs.update);
 
   // Delete a Recipe with id
   router.delete("/:id", pubs.delete);
 
-  // Create a new Recipe
-  router.delete("/", pubs.deleteAll);
 
   app.use('/api/pubs', router);
 };

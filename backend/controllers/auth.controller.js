@@ -1,3 +1,7 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/node-js-jwt-authentication-mysql/
+
 const db = require("../models");
 const config = require("../config/auth.config");
 const User = db.user;
@@ -9,7 +13,8 @@ var jwt = require("jsonwebtoken");
 var bcrypt = require("bcryptjs");
 
 exports.signup = (req, res) => {
-  // Save User to Database
+  // Save User to my Database
+
   User.create({
     username: req.body.username,
     email: req.body.email,
@@ -19,8 +24,7 @@ exports.signup = (req, res) => {
       if (req.body.roles) {
         Role.findAll({
           where: {
-            name: {
-              [Op.or]: req.body.roles
+            name: { [Op.or]: req.body.roles
             }
           }
         }).then(roles => {
@@ -42,13 +46,12 @@ exports.signup = (req, res) => {
 
 exports.signin = (req, res) => {
   User.findOne({
-    where: {
-      username: req.body.username
+    where: {  username: req.body.username
     }
   })
     .then(user => {
-      if (!user) {
-        return res.status(404).send({ message: "User Not found." });
+      if (!user) { return res.status(404).send({ message: "User Not found." });
+
       }
 
       var passwordIsValid = bcrypt.compareSync(
