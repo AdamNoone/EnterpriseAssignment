@@ -1,3 +1,8 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/node-js-jwt-authentication-mysql/
+
+
 const { authJwt } = require("../middleware");
 const controller = require("../controllers/user.controller");
 
@@ -16,12 +21,6 @@ module.exports = function(app) {
     "/api/test/user",
     [authJwt.verifyToken],
     controller.userBoard
-  );
-
-  app.get(
-    "/api/test/mod",
-    [authJwt.verifyToken, authJwt.isModerator],
-    controller.moderatorBoard
   );
 
   app.get(

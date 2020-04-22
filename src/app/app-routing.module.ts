@@ -7,7 +7,6 @@ import {ProfileComponent} from './components/profile/profile.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { BoardUserComponent } from './components/board-user/board-user.component';
-import { BoardModeratorComponent } from './components/board-moderator/board-moderator.component';
 import { BoardAdminComponent } from './components/board-admin/board-admin.component';
 import { MapComponent } from './components/map/map.component';
 import {UpdateReviewComponent} from './components/update-review/update-review.component';
@@ -34,9 +33,6 @@ const routes: Routes = [
   },
   { path: 'user',
     component: BoardUserComponent
-  },
-  { path: 'mod',
-    component: BoardModeratorComponent
   },
   { path: 'admin',
     component: BoardAdminComponent

@@ -1,3 +1,10 @@
+// Code is an adapted version of 2 tutorials by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// Tutorial 1 can be accessed at https://bezkoder.com/node-js-jwt-authentication-mysql/
+// Tutorial 2 can be accessed at https://bezkoder.com/node-js-express-sequelize-mysql/
+
+
+
 const dbConfig = require("../config/db.config.js");
 
 const Sequelize = require("sequelize");

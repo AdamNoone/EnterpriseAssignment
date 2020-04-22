@@ -11,7 +11,6 @@ module.exports = app => {
   // Create a new Review
   router.post("/", reviews.create);
 
-
 // Retrieve all Review
   router.get("/user", reviews.findByName);
 

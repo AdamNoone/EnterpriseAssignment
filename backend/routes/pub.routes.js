@@ -7,14 +7,15 @@ module.exports = app => {
 
   var router = require("express").Router();
 
-  // Create a new Pub
+  // Create a new Recipe
   router.post("/", pubs.create);
 
-  // Retrieve all Pub
+  // Retrieve all Recipes
   router.get("/", pubs.findAll);
 
-  // Retrieve a single Pub by id
+  // Retrieve a single Recipe with id
   router.get("/:id", pubs.findOne);
+
 
   // Delete a Recipe with id
   router.delete("/:id", pubs.delete);

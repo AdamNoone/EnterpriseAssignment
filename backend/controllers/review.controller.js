@@ -2,6 +2,7 @@
 // The code in his tutorial has been adapted to fit my project but may contain some similarities
 // The tutorial can be accessed at https://bezkoder.com/node-js-express-sequelize-mysql/
 
+
 const db = require("../models");
 const Review = db.reviews;
 const Op = db.Sequelize.Op;
@@ -32,11 +33,11 @@ exports.create = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || "An error occurred while creating the Review."
+        message:
+          err.message || "An error occurred while creating the Review."
       });
     });
 };
-
 
 
 exports.findByID = (req, res) => {
@@ -49,7 +50,8 @@ exports.findByID = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || "An error occurred while retrieving Reviews."
+        message:
+          err.message || "An error occurred while retrieving Reviews."
       });
     });
 };
@@ -66,7 +68,8 @@ exports.findByName = (req, res) => {
     })
     .catch(err => {
       res.status(500).send({
-        message: err.message || "An error occurred while retrieving Reviews."
+        message:
+          err.message || "An error occurred while retrieving Reviews."
       });
     });
 };
@@ -95,19 +98,16 @@ exports.update = (req, res) => {
   Review.update(req.body, {
     where: { id: id }
   })
-    .then(num => {
-      if (num === 1) {
+    .then(
         res.send({
           message: "Review was updated successfully."
-        });
-      }
     })
     .catch(err => {
       res.status(500).send({
         message: "Error updating Review with id=" + id
       });
-    });
-};
+    })
+    )};
 
 // Delete a Review with the specified id in the request
 exports.delete = (req, res) => {
@@ -117,17 +117,16 @@ exports.delete = (req, res) => {
     where: { id: id }
   })
     .then(num => {
-      if (num === 1) {
         res.send({
           message: "Review was deleted successfully!"
         });
-      }
     })
     .catch(err => {
       res.status(500).send({
-        message: "Could not delete Review with id=" + id
+        message: "Could not delete Tutorial with id=" + id
       });
     });
 };
+
 
 
