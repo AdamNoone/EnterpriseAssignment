@@ -99,7 +99,6 @@ export class MapComponent implements OnInit {
       .subscribe(
         data => {
           this.pubs = data;
-          console.log(data);
         },
         error => {
           console.log(error);

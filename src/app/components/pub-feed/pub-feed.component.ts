@@ -86,7 +86,6 @@ export class PubFeedComponent implements OnInit {
   resetList() {
     // tslint:disable-next-line:triple-equals
     if (this.name == '') {
-      console.log('reset');
       this.retrievePubs();
     }
   }

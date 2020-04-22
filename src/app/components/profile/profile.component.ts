@@ -63,12 +63,11 @@ export class ProfileComponent implements OnInit {
   }
 
   GetReviews(username: any) {
-    console.log('This is username in function ' + username);
     this.reviewService.findByName(username)
       .subscribe(
         reviewdata => {
           this.reviews = reviewdata;
-          console.log(reviewdata);
+          // console.log(reviewdata);
           if (stringify(reviewdata).length === 0) {
             this.NoReviews = 'You Have Not Made Any Reviews Yet ';
           }

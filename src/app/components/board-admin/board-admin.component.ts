@@ -65,7 +65,6 @@ export class BoardAdminComponent implements OnInit {
     this.pubService.create(data)
       .subscribe(
         response => {
-          console.log(response);
           this.submitted = true;
           this.isSuccessful = true;
           this.AddPubFailed = false;
@@ -98,14 +97,14 @@ export class BoardAdminComponent implements OnInit {
     })
     // tslint:disable-next-line:only-arrow-functions
       .then(function(response) {
-        console.log(response);
+        // console.log(response);
 
 
         // Geometry
         const lat = response.data.results[0].geometry.location.lat;
         const lon = response.data.results[0].geometry.location.lng;
-        console.log('this is the lat ' + lat);
-        console.log('this is the lon ' + lon);
+        // console.log('this is the lat ' + lat);
+        // console.log('this is the lon ' + lon);
 
         document.getElementById('lat').innerHTML = lat;
         document.getElementById('lon').innerHTML = lon;
@@ -140,7 +139,6 @@ export class BoardAdminComponent implements OnInit {
 
 function MakePubMarker(lat: any, lon: any, map: any) {
   const newmap = map;
-  console.log('PLACING MARKER');
 
   const pint = {
     url: '../../../assets/cartoon_guinness_small.png',

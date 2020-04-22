@@ -114,13 +114,11 @@ export class PubDetailsComponent implements OnInit {
   }
 
   GetReviews(pubid: any) {
-    console.log('This is pub_id in function ' + pubid);
     this.reviewService.findByID(pubid)
       .subscribe(
         reviewdata => {
           this.reviews = reviewdata;
           console.log(reviewdata);
-         // document.getElementById('cornerimage').style.width = reviewdata.rating
           if (stringify(reviewdata).length === 0) {
             this.NoReviews = 'There Are Currently No Reviews of the Guinness at This Pub';
           }
@@ -164,7 +162,6 @@ export class PubDetailsComponent implements OnInit {
 
   MakePubMarker() {
     const newmap = this.map;
-    console.log('PLACING MARKER');
 
     const pint = {
       url: '../../../assets/cartoon_guinness_small.png',
@@ -187,7 +184,6 @@ export class PubDetailsComponent implements OnInit {
   GetWidth(rating: any) {
     rating = rating * 20;
     this.rating = (rating += '%');
-    // console.log('rating is ' + this.rating);
     return this.rating;
   }
 }
