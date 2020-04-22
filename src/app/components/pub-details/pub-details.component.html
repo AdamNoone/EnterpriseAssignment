@@ -75,65 +75,96 @@
 
           <!-- Modal Header -->
           <div class="modal-header">
-            <h4 class="modal-title" *ngIf="!submitted">Review of Guinness at {{ currentPub.name }}</h4>
+            <h3 class="modal-title" *ngIf="!submitted">Review of Guinness at {{ currentPub.name }}</h3>
             <button type="button" class="close" data-dismiss="modal">&times;</button>
           </div>
 
           <!-- Modal body -->
           <div class="modal-body" *ngIf="!submitted" >
-            Type your review below
-          </div>
+
 
           <div class="submit-form">
             <div *ngIf="!submitted">
+              <form
+                *ngIf="!isSuccessful"
+                name="form"
+                (ngSubmit)="f.form.valid && saveReview(currentPub.id)"
+                #f="ngForm"
+                novalidate>
+                  <div class="form-group">
+                    <label for="review_title">Review Title </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="review_title"
+                      required
+                      minlength="10"
+                      maxlength="100"
+                      [(ngModel)]="review.review_title"
+                      name="review_title"
+                      #review_title="ngModel"
+                      placeholder="Please Give Your Review A Title"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && review_title.invalid">
+                      <div *ngIf="review_title.errors.required">Title of the Review required</div>
+                      <div *ngIf="review_title.errors.minlength">Title must be at least 10 characters</div>
+                      <div *ngIf="review_title.errors.maxlength">Title must be at most 100 characters</div>
+                    </div>
+                  </div>
 
-              <div class="form-group">
-                <label for="review_title">Sum up your review in 5 Words </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="review_title"
-                  required
-                  [(ngModel)]="review.review_title"
-                  name="review_title"
-                />
-              </div>
+                  <div class="form-group">
+                    <label for="review_text">Please Type your Review Below </label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      id="review_text"
+                      required
+                      minlength="15"
+                      maxlength="500"
+                      [(ngModel)]="review.review_text"
+                      name="review_text"
+                      #review_text="ngModel"
+                      placeholder="Please Write Your Review"
+                    />
+                    <div class="alert-danger" *ngIf="f.submitted && review_text.invalid">
+                      <div *ngIf="review_text.errors.required"> A Review of the Guinness is required</div>
+                      <div *ngIf="review_text.errors.minlength">Your Review must be at least 15 characters</div>
+                      <div *ngIf="review_text.errors.maxlength">Your Review be at most 500 characters</div>
+                    </div>
+                  </div>
 
-              <div class="form-group">
-                <label for="review_text">Please Type your Review Below </label>
-                <input
-                  type="text"
-                  class="form-control"
-                  id="review_text"
-                  required
-                  [(ngModel)]="review.review_text"
-                  name="review_text"
-                />
-              </div>
+                  <div class="form-group">
+                    <label for="rating">Please Rate the Guinness Out of 5</label>
+                    <input
+                      class="form-control"
+                      id="rating"
+                      type="number"
+                      required
+                      [(ngModel)]="review.rating"
+                      name="rating"
+                      #rating="ngModel"
+                      placeholder="Please Rate the Guinness Out of 5"
+                    />
 
-              <div class="form-group">
-                <label for="rating">Please Rate the Pub</label>
-                <input
-                  class="form-control"
-                  id="rating"
-                  required
-                  [(ngModel)]="review.rating"
-                  name="rating"
-                />
-              </div>
-
-
-
-
-
+                    <div class="alert-danger" *ngIf="f.submitted && rating.invalid">
+                      <div *ngIf="rating.errors.required"> A Rating of the Guinness is required</div>
+                    </div>
+                    <div class="alert-danger">
+                    <div id="rating_error">{{message}}</div>
+                    </div>
+                  </div>
 
 
           <!-- Modal footer -->
-          <div class="modal-footer">
-            <button (click)="saveReview(currentPub.id)" class="btn btn-success">Submit</button>
-          </div>
+                  <div class="modal-footer">
+                        <div class="form-group  col-md-12 text-center" >
+                        <button  class="btn btn-success ">Submit</button>
+                        </div>
+                  </div>
+              </form>
             </div>
-
+          </div>
+          </div>
 
             <div *ngIf="submitted">
 
@@ -149,4 +180,4 @@
   </div>
 </div>
 
-</div>
+

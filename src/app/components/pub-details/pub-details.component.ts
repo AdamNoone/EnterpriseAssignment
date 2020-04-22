@@ -31,6 +31,7 @@ export class PubDetailsComponent implements OnInit {
   username: string;
   showAdminBoard = false;
   private roles: string[];
+  isSuccessful = false;
 
 
   constructor(
@@ -87,16 +88,22 @@ export class PubDetailsComponent implements OnInit {
       rating: this.review.rating,
       user: this.username,
     };
-    console.log('this is the pub id before review ' + data.pub_id);
-    this.reviewService.create(data)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.submitted = true;
-        },
-        error => {
-          console.log(error);
-        });
+    if (data.rating >= 0 && data.rating <= 5) {
+      document.getElementById('rating_error').style.display = 'none';
+      this.reviewService.create(data)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.submitted = true;
+            this.isSuccessful = true;
+          },
+          error => {
+            console.log(error);
+          });
+    } else {
+      this.message = 'Rating Must be a number between 0 and 5';
+      document.getElementById('rating_error').style.display = 'block';
+    }
   }
 
   updatePublished(status) {

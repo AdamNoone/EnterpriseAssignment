@@ -14,6 +14,19 @@ h4{
   color: white;
 }
 
+h3{
+  color: #ffffff;
+  font-family: Georgia, serif;
+  font-size: 2vh;
+  letter-spacing: 2.4px;
+  word-spacing: -0.4px;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
 
 #name{
   padding: 3vh;
@@ -67,3 +80,22 @@ h4{
   border: 2px solid black;
 }
 
+
+.modal-header{
+  text-align: center;
+  background-color: black;
+}
+
+.close
+{
+  color: red;
+}
+
+.form-group input {
+  border: 2px solid black;
+}
+
+
+#rating_error{
+  display: block;
+}
