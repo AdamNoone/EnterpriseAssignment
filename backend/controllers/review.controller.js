@@ -98,16 +98,17 @@ exports.update = (req, res) => {
   Review.update(req.body, {
     where: { id: id }
   })
-    .then(
+    .then(num => {
         res.send({
           message: "Review was updated successfully."
+        });
     })
     .catch(err => {
       res.status(500).send({
         message: "Error updating Review with id=" + id
       });
-    })
-    )};
+    });
+};
 
 // Delete a Review with the specified id in the request
 exports.delete = (req, res) => {

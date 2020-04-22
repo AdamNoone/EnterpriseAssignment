@@ -1,3 +1,8 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/node-js-jwt-authentication-mysql/
+
+
 const { verifySignUp } = require("../middleware");
 const controller = require("../controllers/auth.controller");
 
