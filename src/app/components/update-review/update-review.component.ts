@@ -1,3 +1,8 @@
+// This components .html and .ts have functionality inspired by a tutorial by bezkoder
+// This Components code contains some minor elements of this tutorial that have been adapted for this project
+// The tutorial can be accessed at https://bezkoder.com/angular-crud-app/#Add_new_Item_Component
+
+
 import { Component, OnInit } from '@angular/core';
 import { ReviewService } from 'src/app/services/review.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -35,24 +40,6 @@ export class UpdateReviewComponent implements OnInit {
         });
   }
 
-  updatePublished(status) {
-    const data = {
-      title: this.currentReview.title,
-      description: this.currentReview.review_text,
-       rating: this.currentReview.rating,
-    };
-
-    this.reviewService.update(this.currentReview.id, data)
-      .subscribe(
-        response => {
-          this.currentReview.published = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
   updateReview() {
     if (this.currentReview.rating >= 0 && this.currentReview.rating <= 5) {
       document.getElementById('rating_error').style.display = 'none';
@@ -72,15 +59,4 @@ export class UpdateReviewComponent implements OnInit {
     }
   }
 
-  deleteReview() {
-    this.reviewService.delete(this.currentReview.id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/profile']);
-        },
-        error => {
-          console.log(error);
-        });
-  }
 }

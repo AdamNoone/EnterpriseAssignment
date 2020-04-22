@@ -1,3 +1,8 @@
+// This components .html and .ts have functionality inspired by a tutorial by bezkoder
+// This Components code contains some minor elements of this tutorial that have been adapted for this project
+// The tutorial can be accessed at https://bezkoder.com/angular-crud-app/#Add_new_Item_Component
+
+
 import { Component, OnInit } from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import {Router} from '@angular/router';
@@ -46,28 +51,12 @@ export class PubFeedComponent implements OnInit {
         });
   }
 
-  refreshList() {
-    this.retrievePubs();
-    this.currentPub = null;
-    this.currentIndex = -1;
-  }
+
 
   setActivePubs(pub, index) {
     this.currentPub = pub;
     this.currentIndex = index;
     // this.router.navigate(['/pubs/$index']);
-  }
-
-  removeAllPubs() {
-    this.currentPub.deleteAll()
-      .subscribe(
-        response => {
-          console.log(response);
-          this.retrievePubs();
-        },
-        error => {
-          console.log(error);
-        });
   }
 
   searchTitle() {

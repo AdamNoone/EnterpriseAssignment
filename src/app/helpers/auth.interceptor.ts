@@ -1,3 +1,8 @@
+// Code is an adapted version of a tutorial by bezkoder
+// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// The tutorial can be accessed at https://bezkoder.com/angular-jwt-authentication/
+
+
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { HttpInterceptor, HttpHandler, HttpRequest } from '@angular/common/http';
