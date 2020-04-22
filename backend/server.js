@@ -1,5 +1,5 @@
-// Code is an adapted version of 2 tutorials by bezkoder
-// The code in his tutorial has been adapted to fit my project but may contain some similarities
+// This Server has functionality inspired by tutorials by bezkoder
+// This Server code contains some elements of these tutorials which have been adapted for this project
 // Tutorial 1 can be accessed at https://bezkoder.com/node-js-jwt-authentication-mysql/
 // Tutorial 2 can be accessed at https://bezkoder.com/node-js-express-sequelize-mysql/
 
