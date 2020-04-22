@@ -138,12 +138,12 @@ function MakePubMarker(lat: any, lon: any, map: any) {
   console.log('PLACING MARKER');
 
   const pint = {
-    path: 'M 125,5 155,90 245,90 175,145 200,230 125,180 50,230 75,145 5,90 95,90 z',
-    fillColor: 'yellow',
-    fillOpacity: 0.8,
-    scale: 0.15,
+    url: '../../../assets/cartoon_guinness_small.png',
     strokeColor: 'black',
-    strokeWeight: 2
+    strokeWeight: 2,
+    scaledSize: new google.maps.Size(15, 30), // scaled size
+    origin: new google.maps.Point(0, 0), // origin
+    anchor: new google.maps.Point(0, 0), // anchor
   };
 
 

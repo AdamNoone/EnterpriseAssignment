@@ -3,6 +3,7 @@ import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ReviewService} from '../../services/review.service';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {stringify} from "querystring";
 
 @Component({
   selector: 'app-profile',
@@ -13,6 +14,7 @@ import {TokenStorageService} from '../../services/token-storage.service';
 export class ProfileComponent implements OnInit {
   currentReview = null;
   message = '';
+  NoReviews = '';
   reviews: any;
   review = {
     id : 0,
@@ -22,6 +24,7 @@ export class ProfileComponent implements OnInit {
     rating: 0,
     user: '',
   };
+  rating = '';
 
 
   isLoggedIn = false;
@@ -108,9 +111,18 @@ export class ProfileComponent implements OnInit {
         reviewdata => {
           this.reviews = reviewdata;
           console.log(reviewdata);
+          if (stringify(reviewdata).length === 0) {
+            this.NoReviews = 'You Have Not Made Any Reviews Yet ';
+          }
         },
         error => {
           console.log(error);
         });
+  }
+  GetWidth(rating: any) {
+    rating = rating * 20;
+    this.rating = (rating += '%');
+    // console.log('rating is ' + this.rating);
+    return this.rating;
   }
 }

@@ -51,10 +51,6 @@ export class MapComponent implements OnInit {
     const newmap = this.map;
     const iconBase = 'src/app/assets/';
 
-    const x = new Image();
-    x.src = '../../../assets/cartoon_guinness2.png';
-    x.style.width = '20px';
-    x.style.height = '20px';
     const pint = {
       url: '../../../assets/cartoon_guinness_small.png',
       strokeColor: 'black',
@@ -62,8 +58,6 @@ export class MapComponent implements OnInit {
       scaledSize: new google.maps.Size(15, 30), // scaled size
       origin: new google.maps.Point(0, 0), // origin
       anchor: new google.maps.Point(0, 0), // anchor
-
-      borderradius: '50%',
     };
 
 

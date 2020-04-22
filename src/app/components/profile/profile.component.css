@@ -22,3 +22,33 @@
   border-right: 2px solid black;
   border-left: 2px solid black;
 }
+
+p{
+  color: #000000;
+  font-family: Georgia, serif;
+  font-size: 3vh;
+  letter-spacing: 1.4px;
+  word-spacing: -0.4px;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.stardiv {
+  border: 0;
+  position: relative;
+  width: 200px;
+}
+.starimage {
+  border:0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  overflow: hidden;
+}
+img{
+  max-width: 200px;
+}

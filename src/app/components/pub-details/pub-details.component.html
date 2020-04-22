@@ -52,8 +52,14 @@
         </div>
 
         <div>
-          <label><strong>Rating:</strong></label>
-          {{ review.rating}}
+          <div class="stardiv" >
+            <div>
+              <img src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
+            </div>
+            <div class="starimage"  [ngStyle]="{width: GetWidth(review.rating) }">
+              <img src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
+            </div>
+          </div>
         </div>
 
         <div>
@@ -61,14 +67,7 @@
           {{ review.user }}
         </div>
 
-        <div class="containerdiv" >
-            <div>
-              <img src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
-            </div>
-            <div class="cornerimage"  [ngStyle]="{width: GetWidth(review.rating) }">
-              <img src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
-          </div>
-          </div>
+
 
 
         <button  *ngIf="showAdminBoard" class="badge badge-danger float-right" (click)="deleteReview(review.id)">
