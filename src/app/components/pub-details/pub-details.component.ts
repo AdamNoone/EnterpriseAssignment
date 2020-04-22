@@ -1,3 +1,8 @@
+// This components .html and .ts have functionality inspired by a tutorial by bezkoder
+// This Components code contains some minor elements of this tutorial that have been adapted for this project
+// The tutorial can be accessed at https://bezkoder.com/angular-crud-app/#Add_new_Item_Component
+
+
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -106,44 +111,6 @@ export class PubDetailsComponent implements OnInit {
       this.message = 'Rating Must be a number between 0 and 5';
       document.getElementById('rating_error').style.display = 'block';
     }
-  }
-
-  updatePublished(status) {
-    const data = {};
-
-    this.pubService.update(this.currentPub.id, data)
-      .subscribe(
-        response => {
-          this.currentPub.published = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  updatePub() {
-    this.pubService.update(this.currentPub.id, this.currentPub)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = 'The Pub was updated successfully!';
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  deletePub() {
-    this.pubService.delete(this.currentPub.id)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.router.navigate(['/pubs']);
-        },
-        error => {
-          console.log(error);
-        });
   }
 
   GetReviews(pubid: any) {

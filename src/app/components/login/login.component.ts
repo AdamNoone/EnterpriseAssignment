@@ -1,3 +1,7 @@
+// This components .html and .ts have functionality inspired by a tutorial by bezkoder
+// This Components code contains some elements of this tutorial that have been adapted for this project
+// The tutorial can be accessed at https://bezkoder.com/angular-jwt-authentication/
+
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { TokenStorageService } from '../../services/token-storage.service';

@@ -3,7 +3,7 @@ import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ReviewService} from '../../services/review.service';
 import {TokenStorageService} from '../../services/token-storage.service';
-import {stringify} from "querystring";
+import {stringify} from 'querystring';
 
 @Component({
   selector: 'app-profile',
@@ -49,48 +49,6 @@ export class ProfileComponent implements OnInit {
     }
     this.GetReviews(this.username);
     }
-
-  getPub(id) {
-    this.pubService.get(id)
-      .subscribe(
-        data => {
-          this.currentReview = data;
-          console.log(data);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  updatePublished(status) {
-    const data = {
-      title: this.currentReview.title,
-      description: this.currentReview.description,
-      rating: this.currentReview.rating
-    };
-
-    this.pubService.update(this.currentReview.id, data)
-      .subscribe(
-        response => {
-          this.currentReview.published = status;
-          console.log(response);
-        },
-        error => {
-          console.log(error);
-        });
-  }
-
-  updateReview(id: any, review: any) {
-    this.reviewService.update(id, review)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = 'The Pub was updated successfully!';
-        },
-        error => {
-          console.log(error);
-        });
-  }
 
   deleteReview(id: any) {
     this.reviewService.delete(id)

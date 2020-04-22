@@ -1,3 +1,8 @@
+// This components .html and .ts have functionality inspired by a tutorial by bezkoder
+// This Components code contains some elements of this tutorial that have been heavily adapted for this project
+// The tutorial can be accessed at https://bezkoder.com/angular-crud-app/#Add_new_Item_Component
+
+
 import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { PubService } from 'src/app/services/pub.service';
 import {UserService} from '../../services/user.service';

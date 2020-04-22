@@ -1,3 +1,4 @@
+
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
@@ -22,16 +23,8 @@ export class PubService {
     return this.http.post(baseUrl, data);
   }
 
-  update(id, data) {
-    return this.http.put(`${baseUrl}/${id}`, data);
-  }
-
   delete(id) {
     return this.http.delete(`${baseUrl}/${id}`);
-  }
-
-  deleteAll() {
-    return this.http.delete(baseUrl);
   }
 
   findByTitle(name) {
