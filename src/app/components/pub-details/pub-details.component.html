@@ -114,8 +114,7 @@
 
                   <div class="form-group">
                     <label for="review_text">Please Type your Review Below </label>
-                    <input
-                      type="text"
+                    <textarea
                       class="form-control"
                       id="review_text"
                       required
@@ -125,7 +124,7 @@
                       name="review_text"
                       #review_text="ngModel"
                       placeholder="Please Write Your Review"
-                    />
+                    ></textarea>
                     <div class="alert-danger" *ngIf="f.submitted && review_text.invalid">
                       <div *ngIf="review_text.errors.required"> A Review of the Guinness is required</div>
                       <div *ngIf="review_text.errors.minlength">Your Review must be at least 15 characters</div>

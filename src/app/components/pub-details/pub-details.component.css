@@ -95,6 +95,10 @@ h3{
   border: 2px solid black;
 }
 
+.form-group textarea {
+  border: 2px solid black;
+}
+
 
 #rating_error{
   display: block;
