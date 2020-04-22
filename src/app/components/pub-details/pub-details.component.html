@@ -7,31 +7,32 @@
 <div class="list row">
 <div class="col-md-12">
   <div *ngIf="currentPub" class="text-center">
-    <div>
+    <div id="name">
       <h2>{{ currentPub.name }}</h2>
     </div>
   </div>
 
-  <div class="col-md-12">
+
     <div #mapContainer id="map"></div>
-    </div>
 
 
 
+<div id="make_review">
   <div class="col-md-12 text-center">
     <h2>Review the Guinness at {{ currentPub.name }}</h2>
 
 
     <!-- Button to Open the Modal -->
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+    <button id="write" type="button" class="btn" data-toggle="modal" data-target="#myModal">
       Write Review
     </button>
   </div>
+</div>
   <div id = "header" class="col-md-12 text-center">
     <h4>Reviews of Guinness at {{ currentPub.name }}</h4>
   </div>
 
-    <div class="col-md-12">
+
 
     <ul class="list-group">
       <li
@@ -64,7 +65,7 @@
 
       </li>
     </ul>
-</div>
+
 
 
     <!-- The Modal -->

@@ -5,7 +5,6 @@
 
 
 #header{
-  margin-top: 2%;
   height: 7%;
   background-color: black;
   padding: 3%;
@@ -14,3 +13,57 @@
 h4{
   color: white;
 }
+
+
+#name{
+  padding: 3vh;
+  background-color: black;
+
+}
+
+#name h2{
+  font-family: Georgia, serif;
+  font-size: 5vh;
+  letter-spacing: 2.4px;
+  word-spacing: -0.4px;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+
+#make_review
+{
+  padding: 3vh;
+  background-color: #ffffff;
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+}
+
+.list-group-item{
+  border-left: 2px solid black;
+  border-right: 2px solid black;
+  border-bottom: 2px solid black;
+}
+
+#write{
+  margin-top: 1vh;
+  border: 2px solid black;
+  color: white;
+  background-color: black;
+}
+
+#write:hover{
+  margin-top: 1vh;
+  border: 2px solid black;
+  color: white;
+  background-color: #74ff7f;
+}
+
+#map{
+  border: 2px solid black;
+}
+
