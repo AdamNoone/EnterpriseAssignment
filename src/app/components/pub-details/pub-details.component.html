@@ -40,6 +40,7 @@
       <li
         class="list-group-item"
         *ngFor="let review of reviews"
+
       >
         <div>
           <label><strong>Review Title:</strong></label>
@@ -60,11 +61,11 @@
           {{ review.user }}
         </div>
 
-        <div class="containerdiv">
+        <div class="containerdiv" >
             <div>
               <img src="https://image.ibb.co/jpMUXa/stars_blank.png" alt="img">
             </div>
-            <div class="cornerimage" style="width: {{review.rating}};">
+            <div class="cornerimage"  [ngStyle]="{width: GetWidth(review.rating) }">
               <img src="https://image.ibb.co/caxgdF/stars_full.png" alt="">
           </div>
           </div>

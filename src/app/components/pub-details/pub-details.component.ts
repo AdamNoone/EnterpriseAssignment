@@ -18,6 +18,7 @@ export class PubDetailsComponent implements OnInit {
 
   currentPub = null;
   reviews: any;
+  rating = '';
   message = '';
   NoReviews = '';
   review = {
@@ -214,5 +215,12 @@ export class PubDetailsComponent implements OnInit {
       map: newmap
     });
 
+  }
+
+  GetWidth(rating: any) {
+    rating = rating * 20;
+    this.rating = (rating += '%');
+    //console.log('rating is ' + this.rating);
+    return this.rating;
   }
 }
