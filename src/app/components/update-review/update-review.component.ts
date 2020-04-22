@@ -10,6 +10,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UpdateReviewComponent implements OnInit {
   currentReview = null;
   message = '';
+  submitted = false;
+  isSuccessful = false;
 
   constructor(
     private reviewService: ReviewService,
@@ -52,15 +54,22 @@ export class UpdateReviewComponent implements OnInit {
   }
 
   updateReview() {
-    this.reviewService.update(this.currentReview.id, this.currentReview)
-      .subscribe(
-        response => {
-          console.log(response);
-          this.message = 'The review was updated successfully!';
-        },
-        error => {
-          console.log(error);
-        });
+    if (this.currentReview.rating >= 0 && this.currentReview.rating <= 5) {
+      document.getElementById('rating_error').style.display = 'none';
+      this.reviewService.update(this.currentReview.id, this.currentReview)
+        .subscribe(
+          response => {
+            console.log(response);
+            this.submitted = true;
+            this.isSuccessful = true;
+          },
+          error => {
+            console.log(error);
+          });
+    } else {
+      this.message = 'Rating Must be a number between 0 and 5';
+      document.getElementById('rating_error').style.display = 'block';
+    }
   }
 
   deleteReview() {

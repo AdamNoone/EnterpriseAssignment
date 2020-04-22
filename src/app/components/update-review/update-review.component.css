@@ -1,0 +1,34 @@
+#header{
+  text-align: center;
+  background-color: black;
+}
+
+#header{
+  padding: 3vh;
+  background-color: black;
+
+}
+
+#header h3{
+  font-family: Georgia, serif;
+  font-size: 3vh;
+  letter-spacing: 1.4px;
+  word-spacing: -0.4px;
+  color: #FFFFFF;
+  font-weight: 700;
+  text-decoration: none;
+  font-style: italic;
+  font-variant: small-caps;
+  text-transform: capitalize;
+}
+
+label{
+  margin-top: 2vh;
+}
+input{
+  border: 2px solid black
+}
+
+textarea{
+  border: 2px solid black
+}

@@ -3,6 +3,7 @@ import { PubService } from 'src/app/services/pub.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import {ReviewService} from '../../services/review.service';
 import {TokenStorageService} from '../../services/token-storage.service';
+import {stringify} from 'querystring';
 
 
 @Component({
@@ -18,6 +19,7 @@ export class PubDetailsComponent implements OnInit {
   currentPub = null;
   reviews: any;
   message = '';
+  NoReviews = '';
   review = {
     pub_id: 0,
     review_title: '',
@@ -43,7 +45,6 @@ export class PubDetailsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.message = '';
     this.getPub(this.route.snapshot.paramMap.get('id'));
 
     this.isLoggedIn = !!this.tokenStorageService.getToken();
@@ -151,6 +152,10 @@ export class PubDetailsComponent implements OnInit {
         reviewdata => {
           this.reviews = reviewdata;
           console.log(reviewdata);
+         // document.getElementById('cornerimage').style.width = reviewdata.rating
+          if (stringify(reviewdata).length === 0) {
+            this.NoReviews = 'There Are Currently No Reviews of the Guinness at This Pub';
+          }
         },
         error => {
           console.log(error);

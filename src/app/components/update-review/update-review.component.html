@@ -1,29 +1,62 @@
 <div class="container mt-3">
 <div *ngIf="currentReview" class="edit-form">
-  <h4>Review</h4>
-  <form>
-    <div class="form-group">
+  <div id="header" class="text-center" *ngIf="!submitted">
+    <h3>Updating Review</h3>
+  </div>
+  <div class="submit-form mx-auto col-md-12 center-block" style="border: 2px solid black">
+  <form *ngIf="!isSuccessful"
+        name="form"
+        (ngSubmit)="f.form.valid && updateReview()"
+        #f="ngForm"
+        novalidate>
+
+    <div class="form-group col-md-6" style=" margin: 0 auto;float: none;">
       <label for="title">Title</label>
       <input
         type="text"
         class="form-control"
         id="title"
+        required
+        minlength="10"
+        maxlength="100"
         [(ngModel)]="currentReview.review_title"
         name="title"
+        #title="ngModel"
+        placeholder="Please Give Your Review A Title"
+
       />
+
+      <div class="alert-danger" *ngIf="f.submitted && title.invalid">
+        <div *ngIf="title.errors.required">Title of the Review required</div>
+        <div *ngIf="title.errors.minlength">Title must be at least 10 characters</div>
+        <div *ngIf="title.errors.maxlength">Title must be at most 100 characters</div>
+      </div>
+
+
     </div>
-    <div class="form-group">
+    <div class="form-group col-md-6" style=" margin: 0 auto;float: none;">
       <label for="review_text">Description</label>
-      <input
+      <textarea
         type="text"
         class="form-control"
         id="review_text"
+        required
+        minlength="15"
+        maxlength="500"
+        placeholder="Please Write Your Review"
         [(ngModel)]="currentReview.review_text"
         name="review_text"
-      />
+        #review_text="ngModel"
+      ></textarea>
+
+      <div class="alert-danger" *ngIf="f.submitted && review_text.invalid">
+        <div *ngIf="review_text.errors.required"> A Review of the Guinness is required</div>
+        <div *ngIf="review_text.errors.minlength">Your Review must be at least 15 characters</div>
+        <div *ngIf="review_text.errors.maxlength">Your Review be at most 500 characters</div>
+      </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group col-md-6" style=" margin: 0 auto;float: none;">
       <label for="rating">Rating</label>
       <input
         type="text"
@@ -31,19 +64,40 @@
         id="rating"
         [(ngModel)]="currentReview.rating"
         name="rating"
+        required
+        #rating="ngModel"
+        placeholder="Please Rate the Guinness Out of 5"
       />
+
+      <div class="alert-danger" *ngIf="f.submitted && rating.invalid">
+        <div *ngIf="rating.errors.required"> A Rating of the Guinness is required</div>
+      </div>
+      <div class="alert-danger">
+        <div id="rating_error">{{message}}</div>
+      </div>
+
+    </div>
+
+    <div class="form-group  col-md-12 text-center" >
+      <button  class="btn btn-success ">Update</button>
     </div>
 
   </form>
 
-  <button type="submit" class="badge badge-success" (click)="updateReview()">
-    Update
-  </button>
-  <p>{{ message }}</p>
+  <div *ngIf="submitted">
+
+    <div class="text-center">
+      <h5>Your Review Has Been Successfully Updated!</h5>
+      <button type="button" class="btn btn-danger" data-dismiss="modal" [routerLink]="['/profile']">Close</button>
+    </div>
+
 </div>
+  </div>
+
 
 <div *ngIf="!currentReview">
   <br />
   <p>Cannot access this Tutorial...</p>
+</div>
 </div>
 </div>
